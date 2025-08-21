@@ -160,14 +160,15 @@
 
     // On submit
     form.addEventListener('submit', function(event) {
-      event.preventDefault(); // prevent real submit for demo
       let formValid = true;
       fields.forEach(field => {
         if (!validateField(field)) formValid = false;
       });
-      if (formValid) {
-        form.style.display = "none";        // Hide form
-        successMessage.style.display = "block"; // Show confirmation
+      if (!formValid) {
+        event.preventDefault(); // Prevent submit if form invalid
+      } else {
+        // Allow form to submit normally
+        successMessage.style.display = "block"; // Optionally show success message
       }
     });
   </script>
